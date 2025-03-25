@@ -1,0 +1,7 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    username: root
+    password: mysql
+    url: jdbc:mysql://localhost:3306/test_db
