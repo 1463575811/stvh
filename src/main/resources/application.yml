@@ -3,5 +3,16 @@ server:
 spring:
   datasource:
     username: root
-    password: mysql
-    url: jdbc:mysql://localhost:3306/test_db
+    password: pass
+    url: jdbc:mysql://localhost:3306/stvh?characterEncoding=utf-8
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 30MB
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  type-aliases-package: io.baji.stvh.entity
