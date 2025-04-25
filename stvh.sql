@@ -13,6 +13,7 @@ create table user(
                      password varchar(255) not null comment '密码',
                      full_name varchar(255) not null comment '姓名',
                      sex int default 0 comment '性别, 1为男 2为女, 若没有填写默认为0, 前端不显示',
+                     tel varchar(100) comment '联系方式',
                      birth_date date comment '出生日期',
                      grade tinyint comment '年级',
                      class_name varchar(100) comment '班级',
@@ -21,10 +22,10 @@ create table user(
                      enabled bool default true comment '是否允许登录'
 
 ) default charset='utf8' comment '用户表';
-insert into user(id, username, password,full_name,sex,birth_date,grade, class_name, token) values
-                                                                                               (999,'test','123456','管理员小1', 1, '1999-03-05', 0, '', '111222333'),
-                                                                                               (111, 'teststu', '123456','张三', 1, '1998-03-01', 1, '一班', '222222222'),
-                                                                                               (222, 'testtea', '123456','数学王子秦老师', 1, '1981-11-22', 1, '一班', '3333333');
+insert into user(id, username, password,full_name,sex, tel, birth_date,grade, class_name, token) values
+                                                                                               (999,'test','123456','管理员小1', 1, '13511112222','1999-03-05', 0, '', '111222333'),
+                                                                                               (111, 'teststu', '123456','张三', 1, '13511112223','1998-03-01', 1, '一班', '222222222'),
+                                                                                               (222, 'testtea', '123456','数学王子秦老师', 1, '13511112223','1981-11-22', 1, '一班', '3333333');
 
 drop table if exists role;
 create table role(
@@ -99,9 +100,7 @@ CREATE TABLE menu(
                      parent_id INT DEFAULT 0 COMMENT '父ID,关联菜单主键,默认一级菜单的值为0'
 )DEFAULT CHARSET='UTF8' COMMENT='菜单表';
 
-insert into menu values (1, 'Permission', '/permission/page', '/permission', 'Layout', '{"title": "Permission","icon": "el-icon-s-promotion","roles": ["ADMIN", "TEACHER"]}', 0),
-                        (2, 'PagePermission', '', 'page', 'form/index', '{"title": "管理员菜单","roles": ["ADMIN"]}', 1),
-                        (3, 'DirectivePermission', '', 'directive', 'test/test', '{"title": "教师菜单","roles": ["TEACHER"]}', 1),
+insert into menu values
                         (4, 'Admin', '/admin/sysUser', '/admin', 'Layout', '{"title": "用户管理","icon": "el-icon-s-promotion","roles": ["ADMIN"]}', 0),
                         (5, 'SysUser', '', 'sysUser', 'admin/SysUser', '{"title": "系统用户管理","roles": ["ADMIN"]}', 4),
                         (6, 'Teacher', '/teacher/sysTeacher', '/teacher', 'Layout', '{"title": "学生管理","icon": "el-icon-s-promotion","roles": ["TEACHER", "ADMIN"]}', 0),

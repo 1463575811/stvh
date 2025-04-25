@@ -38,7 +38,11 @@
         label="性别"
         width="180"
       />
-
+      <el-table-column
+        prop="tel"
+        label="联系方式"
+        width="180"
+      />
       <el-table-column
         prop="grade"
         label="年级"
@@ -189,11 +193,10 @@ export default {
   methods: {
     exportMany() {
       exportUserInfo(this.baseUrl).then(res => {
-        console.log(res.data)
-        const data = [['学号', '姓名', '性别', '出生日期', '年级', '班级', '权限']]
+        const data = [['学号', '姓名', '性别', '联系方式', '出生日期', '年级', '班级', '权限']]
         const testName = '用户信息表'
         res.data.forEach(item => {
-          data.push([item.username, item.fullName, item.sex, item.birthDate, item.grade, item.className, item.roleName])
+          data.push([item.username, item.fullName, item.sex, item.tel, item.birthDate, item.grade, item.className, item.roleName])
         })
         const ws = XLSX.utils.aoa_to_sheet(data)
         const wb = XLSX.utils.book_new()
@@ -301,7 +304,7 @@ export default {
     reloadTable() {
       listAllUsers(this.baseUrl, this.page).then(res => {
         this.tableData = generateUserShowInfo(res.data)
-
+        console.log(this.tableData)
         this.page = res.pageInfo
       })
     },

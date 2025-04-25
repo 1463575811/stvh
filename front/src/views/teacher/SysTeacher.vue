@@ -36,7 +36,11 @@
         label="性别"
         width="180"
       />
-
+      <el-table-column
+        prop="tel"
+        label="联系方式"
+        width="180"
+      />
       <el-table-column
         prop="grade"
         label="年级"

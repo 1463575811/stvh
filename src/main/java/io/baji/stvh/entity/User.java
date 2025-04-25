@@ -27,6 +27,8 @@ public class User {
 
     private Integer sex;
 
+    private String tel;
+
     private LocalDateTime birthDate;
 
     private Integer grade;

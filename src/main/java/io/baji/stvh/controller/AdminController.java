@@ -84,6 +84,7 @@ public class AdminController {
             UserInfoDto userInfoDto = new UserInfoDto();
             userInfoDto.setUsername(user.getUsername());
             userInfoDto.setFullName(user.getFullName());
+            userInfoDto.setTel(user.getTel());
             userInfoDto.setSex(user.getSex() == 1 ? "男" : "女");
             userInfoDto.setBirthDate(user.getBirthDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             userInfoDto.setGrade(user.getGrade());
@@ -251,11 +252,14 @@ public class AdminController {
                     user.setSex(ExcelUtils.getUserSex(xssCell));
 
                 }else if(cellNum == 3) {
-                    // 第四列 出生日期
+                    // 第四列 联系方式
+                    user.setTel((String) ExcelUtils.getXSSFValue(xssCell));
+                }else if(cellNum == 4) {
+                    // 第五列 出生日期
                     user.setBirthDate(DateUtil.toLocalDateTime(xssCell.getDateCellValue()));
 
-                } else if(cellNum == 4) {
-                    // 第五列 年级
+                } else if(cellNum == 5) {
+                    // 第六列 年级
 
                     Integer grade = gradeMap.get((String) ExcelUtils.getXSSFValue(xssCell));
                     if (Objects.isNull(grade)) {
@@ -263,12 +267,12 @@ public class AdminController {
                     }
                     user.setGrade(grade);
 
-                } else if(cellNum == 5) {
-                    // 第六列 班级
+                } else if(cellNum == 6) {
+                    // 第七列 班级
                     user.setClassName((String)ExcelUtils.getXSSFValue(xssCell));
 
-                } else if(cellNum == 6) {
-                    // 第七列 用户权限
+                } else if(cellNum == 7) {
+                    // 第八列 用户权限
                     roleList.add((String) ExcelUtils.getXSSFValue(xssCell));
                 }
 
@@ -283,8 +287,6 @@ public class AdminController {
 
         userService.saveBatch(list);
 
-        System.out.println("保存之后");
-        System.out.println(list);
         for (int i = 0; i < list.size(); i++) {
 
             User user = list.get(i);

@@ -7,6 +7,7 @@ public class UserInfoDto {
     private String username;
     private String fullName;
     private String sex;
+    private String tel;
     private String birthDate;
     private String grade;
     private String className;
